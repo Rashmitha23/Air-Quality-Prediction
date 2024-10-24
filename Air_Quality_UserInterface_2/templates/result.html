@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% block title %}AirQualityPrediction|Home{% endblock
+%} {% block content %}
+
+<style>
+  #pre_result {
+    width: 92%;
+    margin: 0 auto;
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 15px 30px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  #cl_result,
+  #prob_result {
+    font-size: 25px;
+    font-weight: 800;
+  }
+</style>
+
+<body>
+  <div id="pre_result">
+    <h5 style="font-weight: bold">PREDICTED RESULT</h5>
+    <h1 style="color: #309aaf" id="cl_result">Class State : {{ cl }}</h1>
+    <h1 style="color: #309aaf" id="prob_result">Probability : {{ prob }}</h1>
+  </div>
+</body>
+{% endblock %}

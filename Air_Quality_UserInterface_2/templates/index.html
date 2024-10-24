@@ -1,0 +1,298 @@
+{% extends 'base.html' %} {% block title %}AirQualityPrediction|Home{% endblock
+%} {% block content %}
+
+<link rel="stylesheet" href="static/css/style_index.css" />
+
+<style>
+  body {
+    position: fixed;
+
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+  }
+
+  button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #45a049;
+  }
+
+  .loader {
+    display: block;
+    position: relative;
+    height: 32px;
+    width: 140px;
+    border: 3px solid #fff;
+    border-radius: 20px;
+    box-sizing: border-box;
+    margin: auto;
+  }
+  .loader:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #ff3d00;
+    animation: ballbns 2s ease-in-out infinite alternate;
+  }
+  @keyframes ballbns {
+    0% {
+      left: 0;
+      transform: translateX(0%);
+    }
+    100% {
+      left: 100%;
+      transform: translateX(-100%);
+    }
+  }
+
+  #pre_result {
+    width: 92%;
+    margin: 0 auto;
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 15px 30px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  #cl_result,
+  #prob_result {
+    font-size: 25px;
+    font-weight: 800;
+  }
+</style>
+
+<body>
+  <!-- Container for the registration form -->
+  <div class="container">
+    <!-- Title of the form -->
+    <div class="title">Air Quality Prediction Form</div>
+    <hr />
+    <div class="content">
+      <!-- Registration form -->
+      <form action="\index" method="post" id="form_load">
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details" for="i1"
+              >1. Enter a pm2.5 value 0.990000 to 685.360000:</span
+            >
+            <input
+              type="number"
+              id="i1"
+              name="i1"
+              step="any"
+              required
+              min="0.990000"
+              max="685.360000"
+              placeholder="Enter pm2.5 value"
+            />
+          </div>
+
+          <div class="input-box">
+            <span class="details" for="i2"
+              >2. Enter a NO value 0.060000 to 221.410000:</span
+            >
+            <input
+              type="number"
+              id="i2"
+              name="i2"
+              min="0.060000"
+              max="221.410000"
+              step="0.01"
+              required
+              placeholder="Enter NO value"
+            />
+          </div>
+
+          <div class="input-box">
+            <span class="details" for="i3"
+              >3. Enter a NH3 value 0.050000 to 277.310000:</span
+            >
+            <input
+              type="number"
+              id="i3"
+              name="i3"
+              step="0.01"
+              min="0.050000"
+              max="277.310000"
+              required
+              placeholder="Enter NH3 value"
+            />
+          </div>
+
+          <div class="input-box">
+            <span class="details" for="i4"
+              >4. Enter a NOx value 0.000000 to 293.100000:</span
+            >
+            <input
+              type="number"
+              id="i4"
+              name="i4"
+              step="0.01"
+              min="0.000000"
+              max="293.100000"
+              required
+              placeholder="Enter NOx value"
+            />
+          </div>
+
+          <div class="input-box">
+            <span class="details" for="i5"
+              >5. Enter a CO value 0.000000 to 175.810000:</span
+            >
+            <input
+              type="number"
+              id="i5"
+              name="i5"
+              step="0.01"
+              min="0.000000"
+              max="175.810000"
+              required
+              placeholder="Enter CO value"
+            />
+          </div>
+
+          <div class="input-box">
+            <span class="details" for="i6"
+              >6. Enter a SO2 value 0.210000 to 186.080000:
+            </span>
+            <input
+              type="number"
+              id="i6"
+              name="i6"
+              step="0.01"
+              min="0.210000"
+              max="186.080000"
+              required
+              placeholder="Enter SO2 value"
+            />
+          </div>
+
+          <div class="input-box">
+            <span class="details" for="i7"
+              >7. Enter a O3 value 0.010000 to 257.730000:</span
+            >
+            <input
+              type="number"
+              id="i7"
+              name="i7"
+              step="0.01"
+              min="0.010000"
+              max="257.730000"
+              required
+              placeholder="Enter O3 value"
+            />
+          </div>
+
+          <div class="input-box">
+            <span class="details" for="i8"
+              >8. Enter a Benzene value b/w 0.000000 to 287.490000:
+            </span>
+            <input
+              type="number"
+              id="i8"
+              name="i8"
+              step="0.01"
+              min="0.000000"
+              max="287.490000"
+              required
+              placeholder="Enter Benzene value"
+            />
+          </div>
+
+          <div class="input-box">
+            <span class="details" for="i9"
+              >9. Enter a Toluene value b/w 0.000000 to 281.840000:
+            </span>
+            <input
+              type="number"
+              id="i9"
+              name="i9"
+              step="0.01"
+              min="0.000000"
+              max="281.840000"
+              required
+              placeholder="Enter Toluene value "
+            />
+          </div>
+
+          <div class="input-box">
+            <span class="details" for="i10"
+              >10. Enter a AQI value b/w 14.000000 to 1917.000000 :</span
+            >
+            <input
+              type="number"
+              id="i10"
+              name="i10"
+              step="0.01"
+              min="14.000000"
+              max="1917.000000"
+              required
+              placeholder="Enter AQI value"
+            />
+          </div>
+        </div>
+        <!-- Button container -->
+        <div class="button-container">
+          <div class="button">
+            <!-- Submit button -->
+            <input type="submit" value="Submit" />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <p>{{ msg }}</p>
+
+  <div
+    id="load"
+    style="display: none; text-align: center; color: blue; margin-top: 20px"
+  >
+    <span class="loader"></span>
+    <!-- Loader content goes here -->
+    Loading...
+  </div>
+
+  {% if cl %}
+
+  <div id="pre_result">
+    <h5 style="font-weight: bold">PREDICTED RESULT</h5>
+    <h1 style="color: #309aaf" id="cl_result">Class State : {{ cl }}</h1>
+    <h1 style="color: #309aaf" id="prob_result">Probability : {{ prob }}</h1>
+  </div>
+
+  {% endif %}
+
+  <script>
+    // JavaScript to handle form submission event
+    document
+      .querySelector("#form_load")
+      .addEventListener("submit", function (event) {
+        // Prevent the default form submission behavior
+        event.preventDefault();
+
+        // Show loader when the form is submitted
+        let loader = document.querySelector("#load");
+        loader.style.display = "block";
+
+        // Submit the form programmatically after showing the loader
+        // This ensures that the loader is displayed before the form submission
+        document.querySelector("#form_load").submit();
+      });
+  </script>
+</body>
+{% endblock %}

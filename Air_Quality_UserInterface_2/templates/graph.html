@@ -1,0 +1,97 @@
+{% extends 'base.html' %} {% block title %} AirQualityPrediction|Graphs {%
+endblock %} {% block content %}
+
+<style>
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .form-horizontal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .control-label {
+    color: black;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  #country-state {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  .predict {
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  .graph-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+  }
+
+  .graph-container h4 {
+    color: blue;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .graph-container img {
+    width: 60%;
+    height: 60vh;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+</style>
+
+<div class="form-container">
+  <form
+    class="form-horizontal"
+    action="/submit"
+    method="post"
+    enctype="multipart/form-data"
+  >
+    <label class="control-label"><strong>Select the Graph</strong></label>
+    <select id="country-state" name="text">
+      <option value="">Select Grpahs</option>
+      <option value=""></option>
+      <option value="r_cr">Random Forest Classification Report</option>
+      <option value="r_cm">Random Forest Confusion Matrix</option>
+      <option value=""></option>
+      <option value="s_cr">Support Vector Classification Report</option>
+      <option value="s_cm">Support Vector Confusion Matrix</option>
+    </select>
+    <button type="submit" class="button-81">Submit</button>
+  </form>
+</div>
+
+{% if graph %}
+<div class="graph-container">
+  <h3 style="color: blue; font-weight: bold">{{ mn }}</h3>
+  <h4>{{ name }}</h4>
+  <img src="{{ graph }}" />
+</div>
+{% endif %} {% endblock %}
