@@ -7,6 +7,14 @@ METHODOLOGY
 
 ![image](https://github.com/user-attachments/assets/cf15111b-8758-46ba-ae1f-2aa5314e6616)
 
+Results
+
+Listed all of the evaluation criteria for both techniques. root mean square error, mean absolute error, and mean square error are lower for the random forest method than the decision tree method, whereas the R2 scores are higher. As we know, R2 scores are higher for a better model, while the other metrics are lower. Therefore, we can conclude from the results that the random forest
+algorithm predicts air quality better than the decision tree algorithm.
+
+![image](https://github.com/user-attachments/assets/7a5d8b76-8fd0-44da-a281-92e22b6b9642)
+
+
 Screenshots of the project
 
 ![image](https://github.com/user-attachments/assets/11df9028-a096-4a87-9f19-b3fee0fa1f71)
