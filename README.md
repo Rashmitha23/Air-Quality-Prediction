@@ -9,7 +9,7 @@ This project focuses on **predicting air quality** in urban and industrial setti
 ## 🚀 **Overview of the Project**
 
 With increasing pollution levels in cities, it's crucial to predict and monitor air quality to safeguard the health of residents. The **Air Quality Index (AQI)** is a key metric used to measure pollution levels and their impact on human health. This project uses **machine learning algorithms**, specifically **Random Forest** and **Decision Tree Regression**, to predict air quality based on multiple factors such as particulate matter, ammonia, NOx, ozone, carbon monoxide, sulfur dioxide, nitrogen dioxide, Benzene, and Toluene. 
-
+ 
 ### **Key Highlights**  
 - **Machine Learning Models**: Random Forest and Decision Tree Regression used to forecast AQI.  
 - **Performance Comparison**: Model evaluation using **RMSE**, **MAE**, **MSE**, and **R2 score** to determine which algorithm delivers better accuracy.  
